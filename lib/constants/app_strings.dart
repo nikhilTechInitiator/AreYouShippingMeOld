@@ -1,0 +1,37 @@
+class AppStrings {
+  static const String appName = 'MyApp';
+  static const String welcomeMessage = 'Welcome to MyApp!';
+  static const String errorTitle = 'Error';
+  static const String errorMessage = 'An error occurred. Please try again later.';
+  static const String retryButton = 'Retry';
+  static const String cancelButton = 'Cancel';
+  static const String okButton = 'OK';
+  static const String saveButton = 'Save';
+  static const String deleteButton = 'Delete';
+  static const String editButton = 'Edit';
+  static const String doneButton = 'Done';
+  static const String closeButton = 'Close';
+  static const String confirmButton = 'Confirm';
+  static const String loadingMessage = 'Loading...';
+  static const String emptyMessage = 'No data found.';
+  static const String searchHint = 'Search...';
+  static const String noInternetMessage = 'No internet connection.';
+  static const String tryAgainLaterMessage = 'Please try again later.';
+  static const String somethingWentWrong = 'Something went wrong';
+  static const String emailLabel = 'Email';
+  static const String passwordLabel = 'Password';
+  static const String loginButtonLabel = 'Log In';
+  static const String logoutButtonLabel = 'Log Out';
+  static const String signUpButtonLabel = 'Sign Up';
+  static const String confirmPasswordLabel = 'Confirm Password';
+  static const String firstNameLabel = 'First Name';
+  static const String lastNameLabel = 'Last Name';
+  static const String profileButtonLabel = 'My Profile';
+  static const String settingsButtonLabel = 'Settings';
+  static const String notificationsButtonLabel = 'Notifications';
+  static const String privacyPolicyButtonLabel = 'Privacy Policy';
+  static const String termsOfServiceButtonLabel = 'Terms of Service';
+  static const String languageButtonLabel = 'Language';
+  static const String fieldEmptyMessage = 'Please fill';
+  static const String appExitMessage = 'Are you sure to exit?';
+}
