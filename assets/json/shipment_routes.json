@@ -1,0 +1,184 @@
+{
+  "success": true,
+  "data": {
+    "routes": [
+      {
+        "route_id": 1,
+        "location_list": [
+          {
+            "id": 1,
+            "marker_id": 1,
+            "marker_title": "To NewJursy",
+            "lattitud": 10.669362688740586,
+            "longitude": 75.98963912576437,
+            "location_status": "pickup",
+            "marker_title_id": 1
+
+          },
+          {
+            "id": 2,
+            "marker_id": 2,
+            "marker_title": "Delivery",
+            "lattitud":10.664260320961274,
+            "longitude": 75.97534496337175,
+            "location_status": "delivery",
+            "marker_title_id": 2
+
+          }
+
+        ]
+
+      },
+      {
+        "route_id": 2,
+        "location_list": [
+          {
+            "id": 3,
+            "marker_id": 3,
+            "marker_title": "To Las Vegas",
+            "lattitud": 10.674127589022932,
+            "longitude":75.99469676613808,
+            "location_status": "pickup",
+            "marker_title_id": 3
+
+          },
+          {
+            "id": 4,
+            "marker_id": 4,
+            "marker_title": "Delivery",
+            "lattitud":10.703574609000517,
+            "longitude": 75.98304826766253,
+            "location_status": "delivery",
+            "marker_title_id": 4
+
+          }
+
+        ]
+
+      },
+      {
+        "route_id": 3,
+        "location_list": [
+          {
+            "id": 5,
+            "marker_id": 5,
+            "marker_title": "To Florida",
+            "lattitud": 10.664349940970963,
+            "longitude":75.99661890417336,
+            "location_status": "pickup",
+            "marker_title_id": 5
+
+          },
+          {
+            "id": 6,
+            "marker_id": 6,
+            "marker_title": "Delivery",
+            "lattitud":10.647940143241746,
+            "longitude": 75.9976763650775,
+            "location_status": "delivery",
+            "marker_title_id": 6
+
+          }
+
+        ]
+
+      },
+      {
+        "route_id": 4,
+        "location_list": [
+          {
+            "id": 7,
+            "marker_id": 7,
+            "marker_title": "To Delhi",
+            "lattitud": 12.9719,
+            "longitude":77.5937,
+            "location_status": "pickup",
+            "marker_title_id": 7
+
+          },
+          {
+            "id": 8,
+            "marker_id": 8,
+            "marker_title": "Delivery",
+            "lattitud":19.076090,
+            "longitude": 72.877426,
+            "location_status": "pickup_or_delivery",
+            "marker_title_id": 8
+
+          },
+          {
+            "id": 10,
+            "marker_id": 10,
+            "marker_title": "Delivery",
+            "lattitud":22.310696,
+            "longitude": 73.192635,
+            "location_status": "pickup_or_delivery",
+            "marker_title_id": 10
+
+          },
+          {
+            "id": 11,
+            "marker_id": 11,
+            "marker_title": "Delivery",
+            "lattitud":23.030357,
+            "longitude":  72.517845,
+            "location_status": "pickup_or_delivery",
+            "marker_title_id": 11
+
+          },
+          {
+            "id": 12,
+            "marker_id": 12,
+            "marker_title": "Delivery",
+            "lattitud":26.822134,
+            "longitude":  75.778885,
+            "location_status": "pickup_or_delivery",
+            "marker_title_id": 12
+
+          },
+          {
+            "id": 13,
+            "marker_id": 13,
+            "marker_title": "Delivery",
+            "lattitud":28.644800,
+            "longitude":  77.216721,
+            "location_status": "delivery",
+            "marker_title_id": 13
+
+          }
+
+        ]
+
+      },
+      {
+        "route_id": 5,
+        "location_list": [
+          {
+            "id": 15,
+            "marker_id": 15,
+            "marker_title": " ATM",
+            "lattitud": 10.662712394716921,
+            "longitude":76.00349340587854,
+            "location_status": "delivery",
+            "marker_title_id": 15
+
+          },
+          {
+            "id": 14,
+            "marker_id": 14,
+            "marker_title": "To atm",
+            "lattitud":10.677493,
+            "longitude": 76.0055295,
+            "location_status": "pickup",
+            "marker_title_id": 14
+
+          }
+
+        ]
+
+      }
+    ]
+
+  },
+  "message": ""
+}
