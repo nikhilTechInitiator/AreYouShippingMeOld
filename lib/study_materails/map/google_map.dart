@@ -51,6 +51,7 @@ class _MapWidgetState extends State<MapWidget> {
   double? endLatitude;
   double? endLongitude;
   bool? currentPolyline;
+  bool onMapCreatedTapAction = false;
   List<LatLng> tempPolylineCoordinates2 = [];
 
   @override
@@ -79,6 +80,7 @@ class _MapWidgetState extends State<MapWidget> {
     endLatitude= null;
     endLongitude= null;
     currentPolyline= null;
+    deletePolylineOnTap();
     super.dispose();
   }
 
@@ -129,6 +131,7 @@ class _MapWidgetState extends State<MapWidget> {
                     startLongitude= currentLocation!.longitude!;
                     endLatitude= L.latitude;
                     endLongitude= L.longitude;
+                    onMapCreatedTapAction = true;
                   },
                   initialCameraPosition: CameraPosition(
                     target: currentLocation != null
@@ -206,15 +209,7 @@ class _MapWidgetState extends State<MapWidget> {
                 Positioned.fill(
                   child: GestureDetector(
                     onTap: (){
-                      speed = null;
-                      duration = null;
-                      distanceBwtwn = null;
-                      destinationName = null;
-                      startLatitude= null;
-                      startLongitude= null;
-                      endLatitude= null;
-                      endLongitude= null;
-                      currentPolyline = null;
+                      deletePolylineOnTap();
                       setState(() {});
                     },
                     child: Container(
@@ -447,6 +442,7 @@ class _MapWidgetState extends State<MapWidget> {
         ),
       );
     }
+    if(onMapCreatedTapAction == true) {
       markerList.add(Marker(
           markerId: const MarkerId("currentPolyline"),
           position: LatLng(
@@ -456,6 +452,8 @@ class _MapWidgetState extends State<MapWidget> {
           zIndex: 2,
           anchor: Offset(0.5, 0.5),
           icon: BitmapDescriptor.defaultMarker));
+    }
+    onMapCreatedTapAction = false;
     setState(() {});
   }
   Future<void> deletePolylineOnTap() async {
@@ -470,6 +468,7 @@ class _MapWidgetState extends State<MapWidget> {
     endLatitude= null;
     endLongitude= null;
     currentPolyline = null;
+    onMapCreatedTapAction = false;
     markerList.removeWhere((element) => element.markerId == const MarkerId("currentPolyline"),);
     setState(() {});
   }
