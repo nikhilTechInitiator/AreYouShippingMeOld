@@ -4,6 +4,7 @@ import 'package:are_you_shipping_me/study_materails/google_map.dart';
 import 'package:are_you_shipping_me/widgets/app_bars/app_bar_default.dart';
 import 'package:are_you_shipping_me/widgets/drop_downs/all_dropdowns.dart';
 import 'package:are_you_shipping_me/widgets/pickers/all_pickers.dart';
+import 'package:are_you_shipping_me/widgets/rating_bars/all_rating_bars.dart';
 import 'package:are_you_shipping_me/widgets/text_fields/all_textfields.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +49,12 @@ class AllWidgets extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const MapWidget()),
               );
             }, child:const Text("Google Map")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AllRatingBars()));
+                },
+                child: const Text('All Rating Bars')),
           ],
         ),
       ),
