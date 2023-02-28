@@ -1,4 +1,3 @@
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ShipmentRout {
@@ -50,16 +49,16 @@ class Data {
 
 class Routes {
   int? routeId;
-  List<LocationList>? locationList;
+  List<LocationModel>? locationList;
 
   Routes({this.routeId, this.locationList});
 
   Routes.fromJson(Map<String, dynamic> json) {
     routeId = json['route_id'];
     if (json['location_list'] != null) {
-      locationList = <LocationList>[];
+      locationList = <LocationModel>[];
       json['location_list'].forEach((v) {
-        locationList!.add(new LocationList.fromJson(v));
+        locationList!.add(new LocationModel.fromJson(v));
       });
     }
   }
@@ -75,7 +74,7 @@ class Routes {
   }
 }
 
-class LocationList {
+class LocationModel {
   int? id;
   int? markerId;
   String? markerTitle;
@@ -84,16 +83,15 @@ class LocationList {
   String? locationStatus;
   int? markerTitleId;
 
-  LocationList(
-      {this.id,
-        this.markerId,
-        this.markerTitle,
-        this.lattitud,
-        this.longitude,
-        this.locationStatus,
-        this.markerTitleId});
+  LocationModel({this.id,
+    this.markerId,
+    this.markerTitle,
+    this.lattitud,
+    this.longitude,
+    this.locationStatus,
+    this.markerTitleId});
 
-  LocationList.fromJson(Map<String, dynamic> json) {
+  LocationModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     markerId = json['marker_id'];
     markerTitle = json['marker_title'];
@@ -115,16 +113,15 @@ class LocationList {
     return data;
   }
 }
+
 class Cordinates {
   LatLng? latLng;
 
-  Cordinates(
-      {
-       required this.latLng,
-        });
+  Cordinates({
+    required this.latLng,
+  });
 
   Cordinates.fromJson(Map<String, dynamic> json) {
-
     latLng = json['latLng'];
   }
 
@@ -134,3 +131,4 @@ class Cordinates {
     return data;
   }
 }
+

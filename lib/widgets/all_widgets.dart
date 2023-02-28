@@ -1,6 +1,6 @@
 import 'package:are_you_shipping_me/constants/app_styles.dart';
 import 'package:are_you_shipping_me/study_materails/calendar.dart';
-import 'package:are_you_shipping_me/study_materails/google_map.dart';
+import 'package:are_you_shipping_me/study_materails/map/all_map_options.dart';
 import 'package:are_you_shipping_me/widgets/app_bars/app_bar_default.dart';
 import 'package:are_you_shipping_me/widgets/drop_downs/all_dropdowns.dart';
 import 'package:are_you_shipping_me/widgets/pickers/all_pickers.dart';
@@ -46,9 +46,9 @@ class AllWidgets extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const MapWidget()),
+                MaterialPageRoute(builder: (context) => const AllMapOptions()),
               );
-            }, child:const Text("Google Map")),
+            }, child:const Text("All Map Options")),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
