@@ -1,10 +1,10 @@
 import 'package:are_you_shipping_me/main.dart';
 import 'package:flutter/material.dart';
 
-customPopup(Widget child,
+Future<dynamic> customPopup(Widget child,
     {EdgeInsetsGeometry? contentPadding,
     bool isCloseIconVisible = false}) async {
-  await showDialog(
+    return await showDialog(
       context: MyApp.navigatorKey.currentContext!,
       useSafeArea: true,
       barrierDismissible: true,

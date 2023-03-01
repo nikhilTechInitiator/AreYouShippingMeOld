@@ -73,6 +73,7 @@ dependencies:
   location: ^4.4.0
   cloud_firestore: ^4.4.3
   flutter_rating_bar: ^4.0.1
+  maps_toolkit: ^2.0.1
 
 
 dev_dependencies:
