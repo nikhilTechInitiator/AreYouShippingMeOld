@@ -1,6 +1,5 @@
-import 'package:driving_grade_book/main_common.dart';
+import 'package:are_you_shipping_me/main.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 customPopup(Widget child,
     {EdgeInsetsGeometry? contentPadding,
@@ -21,7 +20,7 @@ customPopup(Widget child,
             actionsPadding: const EdgeInsets.all(0),
             backgroundColor: Theme.of(context).colorScheme.surface,
             content: SizedBox(
-              width: Get.width,
+              width: MediaQuery.of(context).size.width,
               child: isCloseIconVisible
                   ? SingleChildScrollView(
                       child: Column(
