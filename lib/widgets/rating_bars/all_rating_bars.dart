@@ -18,7 +18,12 @@ class AllRatingBars extends StatelessWidget {
           children: const [
              RatingBarWidget(label: "Rate your delivery by John."),
             AppStyles.extraLargeBox,
-            RatingBarWithValue(color:Colors.transparent,value: "4.5", ),
+            Divider(height: 2,color: Colors.black,),
+            AppStyles.mediumBox,
+            AppStyles.mediumBox,
+            AppStyles.mediumBox,
+            AppStyles.mediumBox,
+            RatingBarWithValue(color:Colors.transparent,value: "4.5" ),
             AppStyles.mediumBox,
           ],
         ),

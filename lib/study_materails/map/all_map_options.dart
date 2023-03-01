@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:are_you_shipping_me/constants/app_styles.dart';
 import 'package:are_you_shipping_me/study_materails/map/google_map.dart';
 import 'package:are_you_shipping_me/widgets/app_bars/app_bar_default.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
