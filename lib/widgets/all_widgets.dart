@@ -1,5 +1,7 @@
 import 'package:are_you_shipping_me/constants/app_styles.dart';
 import 'package:are_you_shipping_me/study_materails/calendar.dart';
+import 'package:are_you_shipping_me/study_materails/chat/chat.dart';
+import 'package:are_you_shipping_me/study_materails/common_components/common_components_list.dart';
 import 'package:are_you_shipping_me/study_materails/map/all_map_options.dart';
 import 'package:are_you_shipping_me/widgets/app_bars/app_bar_default.dart';
 import 'package:are_you_shipping_me/widgets/drop_downs/all_dropdowns.dart';
@@ -55,6 +57,18 @@ class AllWidgets extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => AllRatingBars()));
                 },
                 child: const Text('All Rating Bars')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ChatScreen()));
+                },
+                child: const Text('Chats')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CommonComponents()));
+                },
+                child: const Text('Common-Components')),
           ],
         ),
       ),

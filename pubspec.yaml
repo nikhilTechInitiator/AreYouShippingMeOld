@@ -74,6 +74,7 @@ dependencies:
   cloud_firestore: ^4.4.3
   flutter_rating_bar: ^4.0.1
   maps_toolkit: ^2.0.1
+  flutter_chat_bubble: ^2.0.0
 
 
 dev_dependencies:
@@ -101,4 +102,5 @@ flutter:
   assets:
     - assets/
     - assets/json/
+    - assets/orderIcons/
 

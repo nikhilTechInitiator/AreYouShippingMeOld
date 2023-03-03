@@ -15,6 +15,7 @@ class TextFieldOutlined extends StatelessWidget {
   final Color? errorBorderColor;
   final bool? autoValidate;
   final int? maxLength;
+  final Widget? suffixIcon;
 
   const TextFieldOutlined(
       {Key? key,
@@ -31,7 +32,7 @@ class TextFieldOutlined extends StatelessWidget {
       this.inputFormatters = const [],
       this.errorBorderColor,
       this.autoValidate,
-      this.maxLength})
+      this.maxLength, this.suffixIcon})
       : super(key: key);
 
   // final FocusNode _focusNode=FocusNode();
@@ -87,6 +88,7 @@ class TextFieldOutlined extends StatelessWidget {
                 ]),
           ),
           suffixText: suffixText,
+          suffixIcon: suffixIcon,
           contentPadding: EdgeInsets.symmetric(
               horizontal: 12, vertical: errorBorderColor != null ? 4 : 8),
           border: OutlineInputBorder(

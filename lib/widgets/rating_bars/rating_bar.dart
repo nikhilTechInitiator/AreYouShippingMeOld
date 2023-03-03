@@ -6,12 +6,13 @@ class RatingBarWidget extends StatelessWidget {
   final String? label;
   final Function(double)? onChanged;
   final Color? color;
+  final double? initialRating;
 
   const RatingBarWidget(
       {Key? key,
         this.label,
         this.onChanged,
-        this.color})
+        this.color, this.initialRating})
       : super(key: key);
 
   @override
@@ -28,7 +29,7 @@ class RatingBarWidget extends StatelessWidget {
 
           AppStyles.smallBox,
         RatingBar.builder(
-          initialRating: 4.5,
+          initialRating: initialRating ?? 4.5,
           minRating: 1,unratedColor: color ?? Colors.black,
           direction: Axis.horizontal,
           allowHalfRating: true,

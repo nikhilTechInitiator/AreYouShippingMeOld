@@ -33,4 +33,9 @@ class AppColors {
   static const Color darkText = Colors.white;
   static const Color darkSubText = Colors.grey;
   static const Color darkAccent = Colors.blue;
+
+
+
+  static const Color primaryBgColor = Color(0xFFEEEEEE);
+
 }
