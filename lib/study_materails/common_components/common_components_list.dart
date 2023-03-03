@@ -41,7 +41,7 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => OrderStatusComponents()));
+                        builder: (context) => const OrderStatusComponents()));
               },
               child: const Text('Order-Status-Components')),
           ElevatedButton(
@@ -49,7 +49,7 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => OrderDetailsComponents()));
+                        builder: (context) => const OrderDetailsComponents()));
               },
               child: const Text('Order-Detail-Components')),
           ElevatedButton(
@@ -57,7 +57,7 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => FeedBackComponents()));
+                        builder: (context) => const FeedBackComponents()));
               },
               child: const Text('FeedBack-Components')),
           ElevatedButton(
@@ -65,7 +65,7 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => RouteListComponents()));
+                        builder: (context) => const RouteListComponents()));
               },
               child: const Text('Route List Components')),
           ElevatedButton(
@@ -73,7 +73,8 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TruckDriverListComponents()));
+                        builder: (context) =>
+                            const TruckDriverListComponents()));
               },
               child: const Text('Trucks & Drivers List Components')),
           ElevatedButton(
@@ -81,7 +82,8 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ImageSliderListComponents()));
+                        builder: (context) =>
+                            const ImageSliderListComponents()));
               },
               child: const Text('Image Sliders')),
         ],

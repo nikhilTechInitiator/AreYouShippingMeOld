@@ -62,9 +62,10 @@ class _SliderWithImageState extends State<SliderWithImage> {
           activeDividerColor: AppColors.sliderTrackColor,
           inactiveDividerColor: AppColors.sliderTrackColor,
           trackCornerRadius: 0,
-          tickSize: const Size(0.5, 8),
-          activeLabelStyle: Theme.of(context).textTheme.labelSmall,
-          inactiveLabelStyle: Theme.of(context).textTheme.labelSmall,
+          minorTickSize: const Size(.5, 4) ,
+          tickSize: const Size(1, 8),
+          activeLabelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(wordSpacing: .2,height: 1),
+          inactiveLabelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(wordSpacing: .2,height: 1),
           thumbColor: Colors.transparent,
           thumbRadius: 16),
       child: SfSlider(

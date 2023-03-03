@@ -1,11 +1,7 @@
 import 'dart:io';
 import 'package:are_you_shipping_me/constants/app_colors.dart';
-import 'package:are_you_shipping_me/constants/app_drawables.dart';
 import 'package:are_you_shipping_me/constants/app_styles.dart';
-import 'package:are_you_shipping_me/study_materails/common_components/driver_details_tile.dart';
-import 'package:are_you_shipping_me/study_materails/common_components/order_detail_tile.dart';
-import 'package:are_you_shipping_me/study_materails/common_components/route_list_tile.dart';
-import 'package:are_you_shipping_me/study_materails/common_components/trucks_details_tile.dart';
+import 'package:are_you_shipping_me/study_materails/slider_with_circle.dart';
 import 'package:are_you_shipping_me/study_materails/slider_with_imagae.dart';
 import 'package:flutter/material.dart';
 
@@ -35,15 +31,16 @@ class ImageSliderListComponents extends StatelessWidget {
       body: ListView(
         padding: AppStyles.extraSmallPadding,
         children: const [
-           Padding(
-             padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-             child: Text(
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+            child: Text(
               'Weight :',
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+            ),
           ),
-           ),
           AppStyles.SBH20,
-          SliderWithImage(label: "lbs",interval: 10000,maxValue: 60000,stepSize: 10),
+          SliderWithImage(
+              label: "lbs", interval: 10000, maxValue: 60000, stepSize: 10),
           AppStyles.SBH20,
           AppStyles.SBH20,
           AppStyles.thickSmallDivider,
@@ -55,9 +52,21 @@ class ImageSliderListComponents extends StatelessWidget {
             ),
           ),
           AppStyles.SBH20,
-          SliderWithImage(label: "mile",interval: 50,maxValue: 300,stepSize: 5)
-
-
+          SliderWithImage(
+              label: "mile", interval: 50, maxValue: 300, stepSize: 5),
+          AppStyles.SBH20,
+          AppStyles.SBH20,
+          AppStyles.thickSmallDivider,
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+            child: Text(
+              'Shipment Details progress bar :',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+            ),
+          ),
+          AppStyles.SBH20,
+          SliderWithCircle(
+               interval: 10, maxValue: 20, stepSize: 10),
         ],
       ),
     );
