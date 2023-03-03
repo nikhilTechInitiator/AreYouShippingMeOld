@@ -13,7 +13,8 @@ class SliderWithImage extends StatefulWidget {
   final double interval;
   final double maxValue;
   final double stepSize;
-   const SliderWithImage({Key? key, required this.label, required this.interval, required this.maxValue, required this.stepSize}) : super(key: key);
+  final double? initialSliderValue;
+   const SliderWithImage({Key? key, required this.label, required this.interval, required this.maxValue, required this.stepSize, this.initialSliderValue}) : super(key: key);
 
   @override
   State<SliderWithImage> createState() => _SliderWithImageState();
@@ -41,6 +42,7 @@ class _SliderWithImageState extends State<SliderWithImage> {
         customImage = image;
       });
     });
+    sliderValue = widget.initialSliderValue ??  0.0;
   }
 
   @override

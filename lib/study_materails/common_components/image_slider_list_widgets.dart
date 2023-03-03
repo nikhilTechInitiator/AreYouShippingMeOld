@@ -40,7 +40,7 @@ class ImageSliderListComponents extends StatelessWidget {
           ),
           AppStyles.SBH20,
           SliderWithImage(
-              label: "lbs", interval: 10000, maxValue: 60000, stepSize: 10),
+              label: "lbs", interval: 10000, maxValue: 60000, stepSize: 10,initialSliderValue: 20000),
           AppStyles.SBH20,
           AppStyles.SBH20,
           AppStyles.thickSmallDivider,
@@ -53,7 +53,7 @@ class ImageSliderListComponents extends StatelessWidget {
           ),
           AppStyles.SBH20,
           SliderWithImage(
-              label: "mile", interval: 50, maxValue: 300, stepSize: 5),
+              label: "mile", interval: 50, maxValue: 300, stepSize: 5,initialSliderValue: 250),
           AppStyles.SBH20,
           AppStyles.SBH20,
           AppStyles.thickSmallDivider,
@@ -66,7 +66,7 @@ class ImageSliderListComponents extends StatelessWidget {
           ),
           AppStyles.SBH20,
           SliderWithCircle(
-               interval: 10, maxValue: 20, stepSize: 10),
+               interval: 10, maxValue: 20, stepSize: 10,initialSliderValue: 10),
         ],
       ),
     );

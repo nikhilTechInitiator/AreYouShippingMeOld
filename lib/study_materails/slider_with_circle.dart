@@ -12,16 +12,22 @@ class SliderWithCircle extends StatefulWidget {
   final double interval;
   final double maxValue;
   final double stepSize;
-   const SliderWithCircle({Key? key,  required this.interval, required this.maxValue, required this.stepSize}) : super(key: key);
+  final double? initialSliderValue;
+   const SliderWithCircle({Key? key,  required this.interval, required this.maxValue, required this.stepSize, this.initialSliderValue}) : super(key: key);
 
   @override
   State<SliderWithCircle> createState() => _SliderWithCircleState();
 }
 
 class _SliderWithCircleState extends State<SliderWithCircle> {
-  double sliderValue = 0.0;
+  double sliderValue =  0.0;
 
-
+@override
+  void initState() {
+    // TODO: implement initState
+  sliderValue = widget.initialSliderValue ??  0.0;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
