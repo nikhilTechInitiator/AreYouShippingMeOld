@@ -1,5 +1,6 @@
 import 'package:are_you_shipping_me/constants/app_styles.dart';
 import 'package:are_you_shipping_me/study_materails/calendar.dart';
+import 'package:are_you_shipping_me/study_materails/calendar_month.dart';
 import 'package:are_you_shipping_me/study_materails/chat/chat.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/common_components_list.dart';
 import 'package:are_you_shipping_me/study_materails/map/all_map_options.dart';
@@ -45,6 +46,12 @@ class AllWidgets extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const DailyScheduleScreen()),
               );
             }, child:const Text("Calendar")),
+            ElevatedButton(onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MonthWiseCalendar()),
+              );
+            }, child:const Text("Month Wise Calendar")),
             ElevatedButton(onPressed: (){
               Navigator.push(
                 context,

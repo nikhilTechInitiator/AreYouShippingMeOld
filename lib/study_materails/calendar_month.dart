@@ -1,17 +1,19 @@
+import 'package:are_you_shipping_me/constants/app_colors.dart';
+import 'package:are_you_shipping_me/constants/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 
-class DailyScheduleScreen extends StatefulWidget {
-  const DailyScheduleScreen({
+class MonthWiseCalendar extends StatefulWidget {
+  const MonthWiseCalendar({
     Key? key,
   }) : super(key: key);
 
   @override
-  DailyScheduleScreenState createState() => DailyScheduleScreenState();
+  MonthWiseCalendarState createState() => MonthWiseCalendarState();
 }
 
-class DailyScheduleScreenState extends State<DailyScheduleScreen> {
+class MonthWiseCalendarState extends State<MonthWiseCalendar> {
   CalendarController? _controller;
   DateTime? selectedDateTime;
   static DateTime kToday = DateTime.now();
@@ -20,7 +22,19 @@ class DailyScheduleScreenState extends State<DailyScheduleScreen> {
   static DateTime kLastDay =
       DateTime(kToday.year, kToday.month + 1, kToday.day);
 
+  static TextStyle calendarDateStyle({Color? color}) {
+    return TextStyle(
+      color: color ?? const Color(0xFF291139),
+      fontSize: 18,
+    );
+  }
 
+  static TextStyle upperMedium_18({Color? color, String? fontFamily}) {
+    return TextStyle(
+      color: color ?? Colors.black,
+      fontSize: 188,
+    );
+  }
 
   @override
   void initState() {
@@ -31,81 +45,130 @@ class DailyScheduleScreenState extends State<DailyScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primaryBgColor,
       appBar: AppBar(title: const Text("Routes")),
       body: _buildBodyWidget(),
     );
   }
 
   Widget _buildBodyWidget() {
-    return Column(
-      children: [
-        Expanded(
-          child: Stack(
-            children: [
-              _calendarDetailView(),
-            ],
-          ),
+    return Container(
+        padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 8),
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: Colors.white,
+        border: Border.all(width: 1,color: Colors.white54),
+          boxShadow: AppStyles.shadowMedium
         ),
-      ],
-    );
+        child: _calendarDetailView());
   }
 
   Widget _calendarDetailView() {
-    return SfCalendar(
+    return SfCalendar(viewHeaderStyle:ViewHeaderStyle(backgroundColor: Colors.grey.shade300, ) ,
       timeSlotViewSettings: const TimeSlotViewSettings(
           timeIntervalWidth: 60,
           timeIntervalHeight: 52,
           timeRulerSize: 48,
           startHour: 0,
           endHour: 24),
-      view: CalendarView.week,
+      view: CalendarView.month,
       headerHeight: 60,
       viewNavigationMode: ViewNavigationMode.snap,
       controller: _controller,
       cellEndPadding: 0,
-      headerStyle: const CalendarHeaderStyle(
-        textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+      headerStyle: const CalendarHeaderStyle(textAlign: TextAlign.center,
+        textStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 16,),
       ),
       dataSource: MeetingDataSource(_getDataSource()),
+      monthCellBuilder: monthCellBuilder,
+      monthViewSettings: MonthViewSettings(appointmentDisplayMode: MonthAppointmentDisplayMode.none),
       appointmentBuilder: (context, details) {
         final Meeting meeting = details.appointments.first;
-        return ColoredBox(
-          color: meeting.background,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 4),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/ic_truck.png",
-                  width: 20,
-                  height: 12,
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  meeting.eventName,
-                  style: const TextStyle(
-                      fontSize: 6,
-                      overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.w600),
-                  textAlign: TextAlign.left,
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  meeting.note,
-                  style: const TextStyle(
-                      fontSize: 5,
-                      overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.w500),
-                  textAlign: TextAlign.left,
-                  maxLines: 3,
-                ),
-              ],
-            ),
+        return Padding(
+          padding: const EdgeInsets.only(left: 4),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Image.asset(
+                "assets/ic_truck.png",
+                width: 20,
+                height: 12,
+              ),
+              const SizedBox(height: 2),
+              Text(
+                meeting.note,
+                style: const TextStyle(
+                    fontSize: 6,
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: FontWeight.w600),
+                textAlign: TextAlign.left,
+                maxLines: 3,
+                softWrap: true,
+              ),
+            ],
           ),
         );
       },
+    );
+  }
+  Widget monthCellBuilder(BuildContext context, MonthCellDetails details) {
+    if (details.appointments.isNotEmpty) {
+      if(details.appointments.first is Meeting){
+        return Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(0),color: Colors.white,
+              border: Border.all(width: .2,color: Colors.grey),
+              boxShadow: AppStyles.shadowSmall
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                details.date.day.toString(),
+                textAlign: TextAlign.end,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+
+                    Image.asset(
+                      "assets/ic_truck.png",
+                      width: 20,
+                      height: 12,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      (details.appointments.first as Meeting).note,
+                      style: const TextStyle(
+                          fontSize: 6,
+                          overflow: TextOverflow.ellipsis,
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                      maxLines: 3,
+                      softWrap: true,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+
+    }
+    return Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(0),color: Colors.white,
+          border: Border.all(width: .2,color: Colors.grey),
+          boxShadow: AppStyles.shadowSmall
+      ),
+      child: Text(
+        details.date.day.toString(),
+        textAlign: TextAlign.end,
+      ),
     );
   }
 
