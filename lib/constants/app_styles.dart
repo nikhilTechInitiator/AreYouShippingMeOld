@@ -84,6 +84,9 @@ class AppStyles {
   static const SizedBox SBH8 = SizedBox(
     height: 8,
   );
+  static const SizedBox SBH20 = SizedBox(
+    height: 20,
+  );
 
   //DIVIDER
   static const Divider thinSmallDivider =

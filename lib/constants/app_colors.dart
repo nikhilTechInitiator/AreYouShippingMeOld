@@ -37,5 +37,6 @@ class AppColors {
 
 
   static const Color primaryBgColor = Color(0xFFEEEEEE);
+  static const Color sliderTrackColor = Color(0xFF2B2B2B);
 
 }

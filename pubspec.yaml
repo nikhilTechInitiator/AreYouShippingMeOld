@@ -75,6 +75,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   maps_toolkit: ^2.0.1
   flutter_chat_bubble: ^2.0.0
+  syncfusion_flutter_sliders: ^20.1.61
 
 
 dev_dependencies:
