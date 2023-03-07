@@ -19,20 +19,23 @@ Future<File?> pickImageFromGallery(
     final XFile? pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
+      print("imageee${pickedFile.path}");
       imageFile = File(pickedFile.path);
+      //
+      ///app crashing- commented for temp///
+      // return await cropImage(
+      //     imageFile: imageFile,
+      //     isCircleShape: isCircleShape,
+      //     isSquareCrop: isSquareCrop,
+      //     isLockAspectRatio: isLockAspectRatio);
 
-      return await cropImage(
-          imageFile: imageFile,
-          isCircleShape: isCircleShape,
-          isSquareCrop: isSquareCrop,
-          isLockAspectRatio: isLockAspectRatio);
     }
   } else {
     permissionCompulsoryRequestAlert(
         requestMessage:
             'App needs access to your media and camera');
   }
-
+  print("cropImage${imageFile!.path}");
   return imageFile;
 }
 

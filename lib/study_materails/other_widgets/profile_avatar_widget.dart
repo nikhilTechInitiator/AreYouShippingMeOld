@@ -29,6 +29,9 @@ class ProfileAvatarWidget extends StatelessWidget {
               )),
               imageFile != null
                   ? Container(
+                margin: const EdgeInsets.only(top: 10),
+                width: size * .8,
+                height: size * .8,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,

@@ -8,6 +8,7 @@ import 'package:are_you_shipping_me/study_materails/common_components/order_stat
 import 'package:are_you_shipping_me/study_materails/common_components/profile_components.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/route_list_widgets.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/truck_driver_list_widgets.dart';
+import 'package:are_you_shipping_me/study_materails/common_components/user_type_widgets.dart';
 import 'package:are_you_shipping_me/study_materails/payment/gpay.dart';
 import 'package:flutter/material.dart';
 
@@ -92,10 +93,18 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ProfileComponents()));
+                        builder: (context) =>  ProfileComponents()));
               },
               child: const Text('Profile Components')),
           if (Platform.isAndroid) const GooglePay(),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>  UserTypeComponents()));
+              },
+              child: const Text('User Types')),
         ],
       ),
     );

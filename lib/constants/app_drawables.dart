@@ -37,6 +37,9 @@ class AppDrawables {
   ///payment///
   static const String paymentSuccess = "assets/paymentSucces.png";
 
+  ///login///
+  static const String consumer = "assets/destination3x.png";
+  static const String supplier = "assets/truck3x.png";
 
 
 }
