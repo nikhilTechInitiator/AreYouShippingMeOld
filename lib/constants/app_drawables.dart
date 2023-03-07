@@ -34,6 +34,9 @@ class AppDrawables {
   static const String delete = "assets/delete.png";
   static const String calendar = "assets/calendar.png";
 
+  ///payment///
+  static const String paymentSuccess = "assets/paymentSucces.png";
+
 
 
 }

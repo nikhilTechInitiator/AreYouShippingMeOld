@@ -1,13 +1,14 @@
 import 'dart:io';
-
 import 'package:are_you_shipping_me/constants/app_colors.dart';
 import 'package:are_you_shipping_me/constants/app_styles.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/feedback_widgets.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/image_slider_list_widgets.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/order_details_widgets.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/order_status_widgets.dart';
+import 'package:are_you_shipping_me/study_materails/common_components/profile_components.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/route_list_widgets.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/truck_driver_list_widgets.dart';
+import 'package:are_you_shipping_me/study_materails/payment/gpay.dart';
 import 'package:flutter/material.dart';
 
 class CommonComponents extends StatelessWidget {
@@ -86,6 +87,15 @@ class CommonComponents extends StatelessWidget {
                             const ImageSliderListComponents()));
               },
               child: const Text('Image Sliders')),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileComponents()));
+              },
+              child: const Text('Profile Components')),
+          if (Platform.isAndroid) const GooglePay(),
         ],
       ),
     );
