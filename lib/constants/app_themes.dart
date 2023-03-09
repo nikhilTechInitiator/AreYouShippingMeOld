@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 
@@ -24,9 +24,5 @@ ThemeData getTheme(BuildContext context) {
       onError: Color(0xFFFFFFFF),
       brightness: Brightness.light,
     ),
-
-    textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
-      bodySmall: GoogleFonts.abel(),
-    )
   );
 }
