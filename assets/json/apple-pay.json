@@ -1,0 +1,22 @@
+{
+  "provider": "apple_pay",
+  "data": {
+    "merchantIdentifier": "01234567890123456789>",
+    "displayName": "Trucking App",
+    "merchantCapabilities": [
+      "3DS",
+      "debit",
+      "credit"
+    ],
+    "supportedNetworks": [
+      "amex",
+      "visa",
+      "discover",
+      "masterCard"
+    ],
+    "countryCode": "US",
+    "currencyCode": "USD",
+    "requiredBillingContactFields": null,
+    "requiredShippingContactFields": null
+  }
+}
