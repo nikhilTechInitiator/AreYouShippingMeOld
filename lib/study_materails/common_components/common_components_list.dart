@@ -118,7 +118,7 @@ class _CommonComponentsState extends State<CommonComponents> {
                         builder: (context) =>  const ProfileComponents()));
               },
               child: const Text('Profile Components')),
-          if (Platform.isAndroid) const GooglePay(),
+          const GooglePay(),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(
