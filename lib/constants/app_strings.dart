@@ -34,4 +34,5 @@ class AppStrings {
   static const String languageButtonLabel = 'Language';
   static const String fieldEmptyMessage = 'Please fill';
   static const String appExitMessage = 'Are you sure to exit?';
+  static const String clickToOpen = 'Click To Open';
 }

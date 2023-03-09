@@ -21,7 +21,7 @@ class GooglePay extends StatelessWidget {
           )
         ],
         type: GooglePayButtonType.pay,
-        margin: const EdgeInsets.only(top: 15.0),
+        margin: const EdgeInsets.only(top: 15.0,bottom: 15),
         onPaymentResult: (result) {
           gPayResponse(GPayResponse.fromJson(result));
         },

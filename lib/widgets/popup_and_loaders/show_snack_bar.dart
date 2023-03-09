@@ -1,12 +1,21 @@
+import 'package:are_you_shipping_me/main.dart';
 import 'package:flutter/material.dart';
 
-import '../../../main.dart';
+import '../../constants/app_strings.dart';
 
-showSnackBar(String message) {
+showSnackBar(String message, {GestureTapCallback? action}) {
+  debugPrint("action ${action}");
   ScaffoldMessenger.of(MyApp.navigatorKey.currentContext!)
       .showSnackBar(SnackBar(
-    content: Text(
-      message,
-    ),
-  ),);
+    action: action != null
+        ? SnackBarAction(
+        label: AppStrings.clickToOpen,
+        disabledTextColor: Colors.white,
+        textColor: Theme.of(MyApp.navigatorKey.currentContext!)
+            .colorScheme
+            .primary,
+        onPressed: action)
+        : null,
+    content: Text(message, textAlign: TextAlign.start),
+  ));
 }

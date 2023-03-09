@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:are_you_shipping_me/constants/app_colors.dart';
 import 'package:are_you_shipping_me/constants/app_styles.dart';
-import 'package:are_you_shipping_me/study_materails/common_components/order_detail_tile.dart';
 import 'package:are_you_shipping_me/study_materails/common_components/route_list_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -52,9 +51,6 @@ class RouteListComponents extends StatelessWidget {
             dateTime: "10:00 AM - 6:00 PM, Feb 09",
             showDeleteButton: true,
           ),
-
-
-
         ],
       ),
     );

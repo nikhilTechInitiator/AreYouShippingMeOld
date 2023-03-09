@@ -11,10 +11,32 @@ import 'package:are_you_shipping_me/study_materails/common_components/truck_driv
 import 'package:are_you_shipping_me/study_materails/common_components/user_type_widgets.dart';
 import 'package:are_you_shipping_me/study_materails/payment/gpay.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class CommonComponents extends StatelessWidget {
+import '../../widgets/pickers/documents/download_open_file.dart';
+
+class CommonComponents extends StatefulWidget {
   const CommonComponents({Key? key}) : super(key: key);
 
+  @override
+  State<CommonComponents> createState() => _CommonComponentsState();
+}
+
+class _CommonComponentsState extends State<CommonComponents> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    initialiser();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    disposeMethod();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +115,7 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>  ProfileComponents()));
+                        builder: (context) =>  const ProfileComponents()));
               },
               child: const Text('Profile Components')),
           if (Platform.isAndroid) const GooglePay(),
@@ -102,9 +124,14 @@ class CommonComponents extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>  UserTypeComponents()));
+                        builder: (context) =>  const UserTypeComponents()));
               },
               child: const Text('User Types')),
+          ElevatedButton(
+              onPressed: () {
+                download(url: 'https://drive.google.com/file/d/1JEH9tnKl_1c3oo5DBJ3XwFzRU_WjtlB8/view?usp=share_link',fileNameWithExtension: 'sample ${DateFormat('MMddyyyy hhmmss').format(DateTime.now())}.pdf',isShowSnackBar: true);
+              },
+              child: const Text('Download From Url')),
         ],
       ),
     );

@@ -6,7 +6,7 @@ import 'package:are_you_shipping_me/widgets/pickers/media/image_picker.dart';
 import 'package:flutter/material.dart';
 
 class ProfileComponents extends StatefulWidget {
-   ProfileComponents({Key? key}) : super(key: key);
+  const ProfileComponents({Key? key}) : super(key: key);
 
   @override
   State<ProfileComponents> createState() => _ProfileComponentsState();
@@ -40,10 +40,14 @@ class _ProfileComponentsState extends State<ProfileComponents> {
         children: [
           GestureDetector(
               onTap: () async {
-                file=   await pickImageFromGallery(isCircleShape: true,isSquareCrop: false);
+                file = await pickImageFromGallery(
+                    isCircleShape: true, isSquareCrop: false);
                 setState(() {});
               },
-              child:  ProfileAvatarWidget(size: 150,imageFile: file,))
+              child: ProfileAvatarWidget(
+                size: 150,
+                imageFile: file,
+              ))
         ],
       ),
     );
