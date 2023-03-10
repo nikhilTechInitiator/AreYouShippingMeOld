@@ -46,7 +46,7 @@ class GooglePay extends StatelessWidget {
         ),
       ):
       ApplePayButton(
-        paymentConfigurationAsset: 'json/gpay.json',
+        paymentConfigurationAsset: 'json/apple-pay.json',
         paymentItems: const [
           PaymentItem(
             label: 'Total',
@@ -57,7 +57,7 @@ class GooglePay extends StatelessWidget {
         type: ApplePayButtonType.book,
         margin: const EdgeInsets.only(top: 15.0,bottom: 15),
         onPaymentResult: (result) {
-          gPayResponse(GPayResponse.fromJson(result));
+          applePayResponse(GPayResponse.fromJson(result));
         },
         loadingIndicator: const Center(
           child: CircularProgressIndicator(),
@@ -69,6 +69,13 @@ class GooglePay extends StatelessWidget {
   if(gPayResponse.paymentMethodData?.tokenizationData != null){
     loadPaymentSuccessScreen();
   }
+
+  }
+
+  void applePayResponse(GPayResponse gPayResponse) async {
+    if(gPayResponse.paymentMethodData?.tokenizationData != null){
+      loadPaymentSuccessScreen();
+    }
 
   }
   void loadPaymentSuccessScreen() {
