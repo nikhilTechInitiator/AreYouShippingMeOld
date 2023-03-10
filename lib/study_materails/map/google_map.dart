@@ -152,6 +152,26 @@ class _MapWidgetState extends State<MapWidget> {
                   ),
                 );
               }),
+          GestureDetector(
+            behavior:HitTestBehavior.translucent ,
+            onTap: (){
+              Navigator.of(context).pop();
+            },
+            child:  Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                alignment: Alignment.center,
+                height: 40,width: 40,
+                margin: const EdgeInsets.only(left: 20,top: 20),
+                decoration:  BoxDecoration(color:  Colors.white.withOpacity(0.7),shape: BoxShape.circle),
+                child:  Icon(
+                  Icons.arrow_back,
+                  color: Colors.grey.shade700,
+                  size: 26,
+                ),
+              ),
+            ),
+          ),
           if (speed != null && duration != null && distanceBwtwn != null  && destinationName != null) _appBarView(),
           if (speed != null && duration != null && distanceBwtwn != null  && destinationName != null) Align(
               alignment: Alignment.bottomCenter,

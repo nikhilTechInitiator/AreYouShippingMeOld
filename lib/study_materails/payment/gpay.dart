@@ -25,44 +25,49 @@ class GooglePay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child:Platform.isAndroid ?
-      GooglePayButton(
-        paymentConfigurationAsset: 'json/gpay.json',
-        paymentItems: const [
-          PaymentItem(
-            label: 'Total',
-            amount: '10.00',
-            status: PaymentItemStatus.final_price,
-          )
-        ],
-        type: GooglePayButtonType.pay,
-        margin: const EdgeInsets.only(top: 15.0,bottom: 15),
-        onPaymentResult: (result) {
-          gPayResponse(GPayResponse.fromJson(result));
-        },
-        loadingIndicator: const Center(
-          child: CircularProgressIndicator(),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        GooglePayButton(
+          paymentConfigurationAsset: 'json/gpay.json',
+          paymentItems: const [
+            PaymentItem(
+              label: 'Total',
+              amount: '10.00',
+              status: PaymentItemStatus.final_price,
+            )
+          ],
+          type: GooglePayButtonType.pay,
+          margin: const EdgeInsets.only(top: 15.0,bottom: 15),
+          onPaymentResult: (result) {
+            gPayResponse(GPayResponse.fromJson(result));
+          },
+          loadingIndicator: const Center(
+            child: CircularProgressIndicator(),
+          ),
         ),
-      ):
-      ApplePayButton(
-        paymentConfigurationAsset: 'json/apple-pay.json',
-        paymentItems: const [
-          PaymentItem(
-            label: 'Total',
-            amount: '10.00',
-            status: PaymentItemStatus.final_price,
-          )
-        ],
-        type: ApplePayButtonType.book,
-        margin: const EdgeInsets.only(top: 15.0,bottom: 15),
-        onPaymentResult: (result) {
-          applePayResponse(GPayResponse.fromJson(result));
-        },
-        loadingIndicator: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      )
+        ApplePayButton(
+          paymentConfigurationAsset: 'json/apple-pay.json',
+          paymentItems: const [
+            PaymentItem(
+              label: 'Total',
+              amount: '10.00',
+              status: PaymentItemStatus.final_price,
+            )
+          ],
+          type: ApplePayButtonType.book,
+          margin: const EdgeInsets.only(top: 15.0,bottom: 15),
+          onPaymentResult: (result) {
+            applePayResponse(GPayResponse.fromJson(result));
+          },
+          loadingIndicator: const Center(
+            child: CircularProgressIndicator(),
+          ),
+        )
+      ],
+
+
     );
   }
   void gPayResponse(GPayResponse gPayResponse) async {
