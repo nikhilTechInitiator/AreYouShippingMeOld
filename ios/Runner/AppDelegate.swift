@@ -2,9 +2,6 @@ import UIKit
 import Flutter
 import GoogleMaps
 import flutter_downloader
-import FirebaseCore
-import Firebase
-import FirebaseMessaging
 
 
 @UIApplicationMain
@@ -13,7 +10,6 @@ import FirebaseMessaging
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    FirebaseApp.configure()
     GeneratedPluginRegistrant.register(with: self)
     GMSServices.provideAPIKey("AIzaSyB-_vym9wZXKCkVr7_pqtRmdNsJGgB3AAk")
     FlutterDownloaderPlugin.setPluginRegistrantCallback(registerPlugins)
@@ -24,12 +20,6 @@ import FirebaseMessaging
        }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
-  override func application(_ application: UIApplication,
-                                didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-          Messaging.messaging().apnsToken = deviceToken
-          print("Token: \(deviceToken)")
-          super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
-      }
 }
 
 
