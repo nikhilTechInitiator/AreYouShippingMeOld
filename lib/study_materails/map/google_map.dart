@@ -76,11 +76,11 @@ class _MapWidgetState extends State<MapWidget> {
     currentLocation = null;
     destinationName = null;
     originName = null;
-    startLatitude= null;
-    startLongitude= null;
-    endLatitude= null;
-    endLongitude= null;
-    currentPolyline= null;
+    startLatitude = null;
+    startLongitude = null;
+    endLatitude = null;
+    endLongitude = null;
+    currentPolyline = null;
     deletePolylineOnTap();
     super.dispose();
   }
@@ -91,17 +91,17 @@ class _MapWidgetState extends State<MapWidget> {
     _googleMapController?.setMapStyle(style);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       body: Stack(
+        clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
         children: [
           StreamBuilder(
-              stream: FirebaseFirestore.instance.collection("location").snapshots(),
+              stream:
+                  FirebaseFirestore.instance.collection("location").snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (added && widget.userId != null) {
                   showMapSingleDriverLocation(snapshot);
@@ -118,7 +118,7 @@ class _MapWidgetState extends State<MapWidget> {
                   mapType: MapType.normal,
                   floatingTitles: floatingTitles,
                   myLocationEnabled: false,
-                  myLocationButtonEnabled: true,
+                  myLocationButtonEnabled: false,
                   onMapCreated: onMapCreated,
                   onTap: (L) {
                     debugPrint("L.latitude:${L.latitude}");
@@ -128,16 +128,16 @@ class _MapWidgetState extends State<MapWidget> {
                         startLongitude: currentLocation!.longitude!,
                         endLatitude: L.latitude,
                         endLongitude: L.longitude);
-                    startLatitude=currentLocation!.latitude!;
-                    startLongitude= currentLocation!.longitude!;
-                    endLatitude= L.latitude;
-                    endLongitude= L.longitude;
+                    startLatitude = currentLocation!.latitude!;
+                    startLongitude = currentLocation!.longitude!;
+                    endLatitude = L.latitude;
+                    endLongitude = L.longitude;
                     onMapCreatedTapAction = true;
                   },
                   initialCameraPosition: CameraPosition(
                     target: currentLocation != null
-                        ? LatLng(
-                        currentLocation!.latitude!, currentLocation!.longitude!)
+                        ? LatLng(currentLocation!.latitude!,
+                            currentLocation!.longitude!)
                         : _center,
                     zoom: currentLocation != null ? 15 : 8,
                   ),
@@ -154,20 +154,23 @@ class _MapWidgetState extends State<MapWidget> {
                 );
               }),
           Positioned.fill(
-            left: 0,top: 10,
+            left: 0,
+            top: 10,
             child: Align(
               alignment: Alignment.topLeft,
               child: GestureDetector(
-                behavior:HitTestBehavior.translucent ,
-                onTap: (){
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
                   Navigator.of(context).pop();
                 },
-                child:  Container(
-                  alignment: Alignment.center,
-                  height: 40,width: 40,
-                  margin: const EdgeInsets.only(left: 20,top: 20),
-                  decoration:  BoxDecoration(color:  Colors.white.withOpacity(0.7),shape: BoxShape.circle),
-                  child:  Icon(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  margin: const EdgeInsets.only(left: 20, top: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.7),
+                      shape: BoxShape.circle),
+                  child: Icon(
                     Icons.arrow_back,
                     color: Colors.grey.shade700,
                     size: 26,
@@ -176,10 +179,16 @@ class _MapWidgetState extends State<MapWidget> {
               ),
             ),
           ),
-          if (speed != null && duration != null && distanceBwtwn != null  && destinationName != null) _appBarView(),
-          if (speed != null && duration != null && distanceBwtwn != null  && destinationName != null) Align(
-              alignment: Alignment.bottomCenter,
-              child: _bottomButton())
+          if (speed != null &&
+              duration != null &&
+              distanceBwtwn != null &&
+              destinationName != null)
+            _appBarView(),
+          if (speed != null &&
+              duration != null &&
+              distanceBwtwn != null &&
+              destinationName != null)
+            Align(alignment: Alignment.bottomCenter, child: _bottomButton())
         ],
       ),
       floatingActionButton: Padding(
@@ -202,18 +211,17 @@ class _MapWidgetState extends State<MapWidget> {
     return Container(
         decoration: BoxDecoration(
             color: Colors.black,
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(1),
                 spreadRadius: 2,
                 blurRadius: 3,
-                offset:
-                const Offset(0, 3), // changes position of shadow
+                offset: const Offset(0, 3), // changes position of shadow
               ),
             ],
             borderRadius: BorderRadius.circular(8)),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        margin: const EdgeInsets.symmetric(vertical: 20,horizontal: 6),
+        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -232,8 +240,8 @@ class _MapWidgetState extends State<MapWidget> {
                 ),
                 Positioned.fill(
                   child: GestureDetector(
-                    behavior:HitTestBehavior.translucent ,
-                    onTap: (){
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
                       deletePolylineOnTap();
                       setState(() {});
                     },
@@ -251,7 +259,9 @@ class _MapWidgetState extends State<MapWidget> {
                     children: [
                       Container(
                         color: Colors.black,
-                        child:  const Icon(Icons.location_on_sharp,color: Colors.white54),),
+                        child: const Icon(Icons.location_on_sharp,
+                            color: Colors.white54),
+                      ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 2),
@@ -263,7 +273,10 @@ class _MapWidgetState extends State<MapWidget> {
                                   Expanded(
                                     child: Text(
                                       "$destinationName",
-                                      style: const TextStyle(color: Colors.white70,fontSize: 14,),
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 14,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -282,7 +295,8 @@ class _MapWidgetState extends State<MapWidget> {
               children: [
                 Container(
                     color: Colors.black,
-                    child: const Icon(Icons.location_on_sharp,color: Colors.white54)),
+                    child: const Icon(Icons.location_on_sharp,
+                        color: Colors.white54)),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 2),
@@ -294,7 +308,10 @@ class _MapWidgetState extends State<MapWidget> {
                             Expanded(
                               child: Text(
                                 "$originName",
-                                style: const TextStyle(color: Colors.white70,fontSize: 14,),
+                                style: const TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                           ],
@@ -305,74 +322,93 @@ class _MapWidgetState extends State<MapWidget> {
                 ),
               ],
             ),
-
-            Padding(padding: const EdgeInsets.only(left: 26,top: 6),
+            Padding(
+              padding: const EdgeInsets.only(left: 26, top: 6),
               child: Column(children: [
                 Row(
                   children: [
-                    if (duration != null) const Icon(Icons.timer_outlined,color: Colors.white54,size: 14,),
+                    if (duration != null)
+                      const Icon(
+                        Icons.timer_outlined,
+                        color: Colors.white54,
+                        size: 14,
+                      ),
                     const SizedBox(
                       width: 8,
                     ),
-                    if (duration != null) Text("$duration",style: const TextStyle(fontSize: 14,color: Colors.white),),
+                    if (duration != null)
+                      Text(
+                        "$duration",
+                        style:
+                            const TextStyle(fontSize: 14, color: Colors.white),
+                      ),
                     const SizedBox(
                       width: 15,
                     ),
                     if (distanceBwtwn != null)
-                      Image.asset("assets/distance.png",color: Colors.white54,height: 14,fit: BoxFit.fitHeight,),
+                      Image.asset(
+                        "assets/distance.png",
+                        color: Colors.white54,
+                        height: 14,
+                        fit: BoxFit.fitHeight,
+                      ),
                     const SizedBox(
                       width: 5,
                     ),
                     if (distanceBwtwn != null)
                       Text(
                         "($distanceBwtwn)",
-                        style: const TextStyle(color: Colors.white,fontSize: 14),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 14),
                       ),
                   ],
                 ),
                 if (speed != null)
                   Row(
-
                     children: [
-                      const Icon(Icons.speed_sharp,color: Colors.white54,size: 14,),
+                      const Icon(
+                        Icons.speed_sharp,
+                        color: Colors.white54,
+                        size: 14,
+                      ),
                       const SizedBox(
                         width: 5,
                       ),
                       Text(
                         " $speed",
-                        style: const TextStyle(color: Colors.white,fontSize: 14,),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
                       ),
                     ],
                   ),
               ]),
             )
-
           ],
-        )
-    );
+        ));
   }
-  Widget _bottomButton(){
+
+  Widget _bottomButton() {
     return GestureDetector(
-      behavior:HitTestBehavior.translucent,
-      onTap: (){
-        if(currentPolyline != true) {
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        if (currentPolyline != true) {
           createPolylineOnTap();
-        }   else{
+        } else {
           deletePolylineOnTap();
         }
-
       },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.black,
           shape: BoxShape.circle,
-          boxShadow:  [
+          boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(1),
               spreadRadius: 2,
               blurRadius: 3,
-              offset:
-              const Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),
@@ -380,14 +416,16 @@ class _MapWidgetState extends State<MapWidget> {
         margin: const EdgeInsets.all(10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children:  [
-            const Icon(Icons.directions_sharp,color: Colors.white,size: 20),
-            Text( currentPolyline != true? "Start" : "Stop" ,style: const TextStyle(color: Colors.white,fontSize: 16)),
+          children: [
+            const Icon(Icons.directions_sharp, color: Colors.white, size: 20),
+            Text(currentPolyline != true ? "Start" : "Stop",
+                style: const TextStyle(color: Colors.white, fontSize: 16)),
           ],
         ),
       ),
     );
   }
+
   void onMapCreated(controller) {
     _googleMapController = controller;
     added = true;
@@ -397,59 +435,62 @@ class _MapWidgetState extends State<MapWidget> {
 
   void addCustomIcon() {
     if (Platform.isIOS) {
-
       BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(12, 12)),
-          "assets/destination_ios.png")
+              const ImageConfiguration(size: Size(12, 12)),
+              "assets/destination_ios.png")
           .then((value) {
         destinationIcon = value;
       });
       BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(12, 12),), "assets/shipment_ios.png")
+              const ImageConfiguration(
+                size: Size(12, 12),
+              ),
+              "assets/shipment_ios.png")
           .then((value) {
         shipmentIconForStops = value;
       });
       BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(12, 12)),
-          "assets/3d_truck.png")
+              const ImageConfiguration(size: Size(12, 12)),
+              "assets/3d_truck.png")
           .then((value) {
         navigationIcon = value;
       });
       BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(30, 30)),
-          "assets/shipment.png")
+              const ImageConfiguration(size: Size(30, 30)),
+              "assets/shipment.png")
           .then(
-            (icon) {
+        (icon) {
           setState(() {
             shipmentIcon = icon;
           });
         },
       );
-
-    }
-    else {
+    } else {
       BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(12, 12)),
-          "assets/destination.png")
+              const ImageConfiguration(size: Size(12, 12)),
+              "assets/destination.png")
           .then((value) {
         destinationIcon = value;
       });
       BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(12, 12),), "assets/shipment.png")
+              const ImageConfiguration(
+                size: Size(12, 12),
+              ),
+              "assets/shipment.png")
           .then((value) {
         shipmentIconForStops = value;
       });
       BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(12, 12)),
-          "assets/3d_truck2x.png")
+              const ImageConfiguration(size: Size(12, 12)),
+              "assets/3d_truck2x.png")
           .then((value) {
         navigationIcon = value;
       });
       BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(30, 30)),
-          "assets/shipment2x.png")
+              const ImageConfiguration(size: Size(30, 30)),
+              "assets/shipment2x.png")
           .then(
-            (icon) {
+        (icon) {
           setState(() {
             shipmentIcon = icon;
           });
@@ -473,7 +514,7 @@ class _MapWidgetState extends State<MapWidget> {
         );
         if (result.points.isNotEmpty) {
           result.points.forEach(
-                (PointLatLng point) => tempPolylineCoordinates.add(
+            (PointLatLng point) => tempPolylineCoordinates.add(
               LatLng(point.latitude, point.longitude),
             ),
           );
@@ -483,28 +524,27 @@ class _MapWidgetState extends State<MapWidget> {
       setState(() {});
     }
   }
+
   Future<void> createPolylineOnTap() async {
     PolylinePoints polylinePoints2 = PolylinePoints();
     tempPolylineCoordinates2.clear();
     currentPolyline = true;
     PolylineResult result2 = await polylinePoints2.getRouteBetweenCoordinates(
       key, // Your Google Map Key
-      PointLatLng(
-          startLatitude!, startLongitude!),
-      PointLatLng(endLatitude!,endLongitude!),
+      PointLatLng(startLatitude!, startLongitude!),
+      PointLatLng(endLatitude!, endLongitude!),
     );
     if (result2.points.isNotEmpty) {
       result2.points.forEach(
-            (PointLatLng point) => tempPolylineCoordinates2.add(
+        (PointLatLng point) => tempPolylineCoordinates2.add(
           LatLng(point.latitude, point.longitude),
         ),
       );
     }
-    if(onMapCreatedTapAction == true) {
+    if (onMapCreatedTapAction == true) {
       markerList.add(Marker(
           markerId: const MarkerId("currentPolyline"),
-          position: LatLng(
-              endLatitude!,endLongitude!),
+          position: LatLng(endLatitude!, endLongitude!),
           draggable: false,
           flat: true,
           zIndex: 2,
@@ -514,6 +554,7 @@ class _MapWidgetState extends State<MapWidget> {
     onMapCreatedTapAction = false;
     setState(() {});
   }
+
   Future<void> deletePolylineOnTap() async {
     tempPolylineCoordinates2.clear();
     currentPolyline = null;
@@ -521,13 +562,15 @@ class _MapWidgetState extends State<MapWidget> {
     duration = null;
     distanceBwtwn = null;
     destinationName = null;
-    startLatitude= null;
-    startLongitude= null;
-    endLatitude= null;
-    endLongitude= null;
+    startLatitude = null;
+    startLongitude = null;
+    endLatitude = null;
+    endLongitude = null;
     currentPolyline = null;
     onMapCreatedTapAction = false;
-    markerList.removeWhere((element) => element.markerId == const MarkerId("currentPolyline"),);
+    markerList.removeWhere(
+      (element) => element.markerId == const MarkerId("currentPolyline"),
+    );
     setState(() {});
   }
 
@@ -538,9 +581,9 @@ class _MapWidgetState extends State<MapWidget> {
         CameraPosition(
           target: LatLng(
               snapshot.data?.docs.singleWhere(
-                      (element) => element.id == widget.userId)["latitude"],
+                  (element) => element.id == widget.userId)["latitude"],
               snapshot.data?.docs.singleWhere(
-                      (element) => element.id == widget.userId)["longitude"]),
+                  (element) => element.id == widget.userId)["longitude"]),
           zoom: 15,
         ),
       ),
@@ -549,25 +592,21 @@ class _MapWidgetState extends State<MapWidget> {
         markerId: MarkerId(widget.userId!),
         position: LatLng(
             snapshot.data?.docs.singleWhere(
-                    (element) => element.id == widget.userId)["latitude"],
+                (element) => element.id == widget.userId)["latitude"],
             snapshot.data?.docs.singleWhere(
-                    (element) => element.id == widget.userId)["longitude"]),
+                (element) => element.id == widget.userId)["longitude"]),
         draggable: false,
         infoWindow: InfoWindow(
             title: snapshot.data?.docs
                 .singleWhere((element) => element.id == widget.userId)["name"],
-            snippet: "${
-                snapshot.data?.docs
-                    .singleWhere(
-                        (element) => element.id == widget.userId)["speed"].
-                toStringAsFixed(2)
-            } KM/hr"),
+            snippet:
+                "${snapshot.data?.docs.singleWhere((element) => element.id == widget.userId)["speed"].toStringAsFixed(2)} KM/hr"),
         flat: true,
         zIndex: 2,
         anchor: const Offset(0.5, 0.5),
         rotation: snapshot.data?.docs
             .singleWhere((element) => element.id == widget.userId)["direction"],
-        onTap: (){},
+        onTap: () {},
         icon: navigationIcon));
   }
 
@@ -579,12 +618,14 @@ class _MapWidgetState extends State<MapWidget> {
             markerId: MarkerId(element["token"]),
             position: LatLng(element["latitude"], element["longitude"]),
             draggable: false,
-            infoWindow: InfoWindow(title: element["name"],snippet: "${element["speed"].toStringAsFixed(2)} KM/hr"),
+            infoWindow: InfoWindow(
+                title: element["name"],
+                snippet: "${element["speed"].toStringAsFixed(2)} KM/hr"),
             flat: true,
             zIndex: 2,
             anchor: const Offset(0.5, 0.5),
             rotation: element["direction"],
-            onTap: (){},
+            onTap: () {},
             icon: navigationIcon));
       }
     });
@@ -596,18 +637,18 @@ class _MapWidgetState extends State<MapWidget> {
       tempList.add(Polyline(
         polylineId: PolylineId("route${tempList.length}"),
         points: element,
-        color:  Colors.black87,
+        color: Colors.black87,
         patterns: const [PatternItem.dot],
         width: 5,
         startCap: Cap.roundCap,
         endCap: Cap.roundCap,
       ));
     }
-    if(currentPolyline == true){
+    if (currentPolyline == true) {
       tempList.add(Polyline(
         polylineId: const PolylineId("currentPolyline"),
         points: tempPolylineCoordinates2,
-        color:  Colors.blue ,
+        color: Colors.blue,
         patterns: [PatternItem.dash(5)],
         width: 7,
         startCap: Cap.roundCap,
@@ -624,12 +665,12 @@ class _MapWidgetState extends State<MapWidget> {
     location.changeSettings(
         accuracy: LocationAccuracy.high, distanceFilter: 5.0);
     location.getLocation().then(
-          (location) {
+      (location) {
         currentLocation = location;
       },
     );
     _locationSubscription = location.onLocationChanged.listen(
-          (newLoc) {
+      (newLoc) {
         currentLocation = newLoc;
         _googleMapController?.animateCamera(
           CameraUpdate.newCameraPosition(
@@ -664,7 +705,7 @@ class _MapWidgetState extends State<MapWidget> {
   void getMyCurrentLocation() async {
     Location location = Location();
     location.getLocation().then(
-          (location) {
+      (location) {
         currentLocation = location;
       },
     );
@@ -719,18 +760,17 @@ class _MapWidgetState extends State<MapWidget> {
                   startLongitude: currentLocation!.longitude!,
                   endLatitude: element.lattitud!,
                   endLongitude: element.longitude!);
-              startLatitude=currentLocation!.latitude!;
-              startLongitude= currentLocation!.longitude!;
-              endLatitude= element.lattitud!;
-              endLongitude= element.longitude;
-
+              startLatitude = currentLocation!.latitude!;
+              startLongitude = currentLocation!.longitude!;
+              endLatitude = element.lattitud!;
+              endLongitude = element.longitude;
             },
             anchor: const Offset(0.5, 1.0),
             icon: element.locationStatus == "pickup"
                 ? shipmentIcon
                 : element.locationStatus == "delivery"
-                ? destinationIcon
-                : shipmentIconForStops));
+                    ? destinationIcon
+                    : shipmentIconForStops));
       });
     }
   }
@@ -751,9 +791,9 @@ class _MapWidgetState extends State<MapWidget> {
 
   Future<dynamic> getDistance(
       {required double startLatitude,
-        required double startLongitude,
-        required double endLatitude,
-        required double endLongitude}) async {
+      required double startLongitude,
+      required double endLatitude,
+      required double endLongitude}) async {
     destinationName = null;
     originName = null;
     distanceBwtwn = null;
@@ -765,7 +805,7 @@ class _MapWidgetState extends State<MapWidget> {
     try {
       Response response = await dio.get(Url);
       DistanceResponse distanceResponse =
-      DistanceResponse.fromJson(response.data);
+          DistanceResponse.fromJson(response.data);
       if (response.statusCode == 200) {
         distanceBwtwn = distanceResponse.routeList
             ?.elementAt(0)
@@ -779,22 +819,27 @@ class _MapWidgetState extends State<MapWidget> {
             ?.elementAt(0)
             .duration;
 
-        if(distanceResponse.destinationAddress?.isNotEmpty == true &&  distanceResponse.destinationAddress?.contains("+") != true){
-          destinationName = distanceResponse.destinationAddress?.split(",").first;
-        }
-        else if(distanceResponse.destinationAddress?.isNotEmpty == true &&  distanceResponse.destinationAddress?.contains("+") == true){
-          destinationName = distanceResponse.destinationAddress?.split(",").toList().elementAt(1);
-        }
-        else{
+        if (distanceResponse.destinationAddress?.isNotEmpty == true &&
+            distanceResponse.destinationAddress?.contains("+") != true) {
+          destinationName =
+              distanceResponse.destinationAddress?.split(",").first;
+        } else if (distanceResponse.destinationAddress?.isNotEmpty == true &&
+            distanceResponse.destinationAddress?.contains("+") == true) {
+          destinationName = distanceResponse.destinationAddress
+              ?.split(",")
+              .toList()
+              .elementAt(1);
+        } else {
           destinationName = distanceResponse.destinationAddress;
         }
-        if(distanceResponse.originAddress?.isNotEmpty == true &&  distanceResponse.originAddress?.contains("+") != true){
+        if (distanceResponse.originAddress?.isNotEmpty == true &&
+            distanceResponse.originAddress?.contains("+") != true) {
           originName = distanceResponse.originAddress?.split(",").first;
-        }
-        else if(distanceResponse.originAddress?.isNotEmpty == true &&  distanceResponse.originAddress?.contains("+") == true){
-          originName = distanceResponse.originAddress?.split(",").toList().elementAt(1);
-        }
-        else{
+        } else if (distanceResponse.originAddress?.isNotEmpty == true &&
+            distanceResponse.originAddress?.contains("+") == true) {
+          originName =
+              distanceResponse.originAddress?.split(",").toList().elementAt(1);
+        } else {
           originName = distanceResponse.originAddress;
         }
         debugPrint("duration:$duration");
@@ -813,11 +858,12 @@ class _MapWidgetState extends State<MapWidget> {
   }
 
   void _calculateSpeedBetweenLocations() {
-    if(currentLocation == null) {
-      speed =  null;
+    if (currentLocation == null) {
+      speed = null;
       debugPrint("speed:$speed");
-    } else{
-      speed ='${currentLocation?.speed != null && currentLocation!.speed! * 3600 / 1000 > 0 ? (currentLocation!.speed! * 3600 / 1000).toStringAsFixed(2) : 0} KM/h';
+    } else {
+      speed =
+          '${currentLocation?.speed != null && currentLocation!.speed! * 3600 / 1000 > 0 ? (currentLocation!.speed! * 3600 / 1000).toStringAsFixed(2) : 0} KM/h';
       debugPrint("speed:$speed");
     }
   }
