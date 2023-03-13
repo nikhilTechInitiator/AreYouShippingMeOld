@@ -152,22 +152,25 @@ class _MapWidgetState extends State<MapWidget> {
                   ),
                 );
               }),
-          GestureDetector(
-            behavior:HitTestBehavior.translucent ,
-            onTap: (){
-              Navigator.of(context).pop();
-            },
-            child:  Align(
+          Positioned.fill(
+            left: 0,top: 10,
+            child: Align(
               alignment: Alignment.topLeft,
-              child: Container(
-                alignment: Alignment.center,
-                height: 40,width: 40,
-                margin: const EdgeInsets.only(left: 20,top: 20),
-                decoration:  BoxDecoration(color:  Colors.white.withOpacity(0.7),shape: BoxShape.circle),
-                child:  Icon(
-                  Icons.arrow_back,
-                  color: Colors.grey.shade700,
-                  size: 26,
+              child: GestureDetector(
+                behavior:HitTestBehavior.translucent ,
+                onTap: (){
+                  Navigator.of(context).pop();
+                },
+                child:  Container(
+                  alignment: Alignment.center,
+                  height: 40,width: 40,
+                  margin: const EdgeInsets.only(left: 20,top: 20),
+                  decoration:  BoxDecoration(color:  Colors.white.withOpacity(0.7),shape: BoxShape.circle),
+                  child:  Icon(
+                    Icons.arrow_back,
+                    color: Colors.grey.shade700,
+                    size: 26,
+                  ),
                 ),
               ),
             ),
@@ -218,7 +221,7 @@ class _MapWidgetState extends State<MapWidget> {
               children: [
                 Positioned.fill(
                   child: Container(
-                    margin: EdgeInsets.only(left: 11),
+                    margin: const EdgeInsets.only(left: 11),
                     alignment: Alignment.centerLeft,
                     child: Container(
                       width: 2,
@@ -228,14 +231,15 @@ class _MapWidgetState extends State<MapWidget> {
                 ),
                 Positioned.fill(
                   child: GestureDetector(
+                    behavior:HitTestBehavior.translucent ,
                     onTap: (){
                       deletePolylineOnTap();
                       setState(() {});
                     },
                     child: Container(
                       alignment: Alignment.centerRight,
-                      padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                      child: Icon(Icons.close, color: Colors.white54),
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                      child: const Icon(Icons.close, color: Colors.white54),
                     ),
                   ),
                 ),
@@ -246,7 +250,7 @@ class _MapWidgetState extends State<MapWidget> {
                     children: [
                       Container(
                         color: Colors.black,
-                        child:  Icon(Icons.location_on_sharp,color: Colors.white54),),
+                        child:  const Icon(Icons.location_on_sharp,color: Colors.white54),),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 2),
@@ -277,7 +281,7 @@ class _MapWidgetState extends State<MapWidget> {
               children: [
                 Container(
                     color: Colors.black,
-                    child: Icon(Icons.location_on_sharp,color: Colors.white54)),
+                    child: const Icon(Icons.location_on_sharp,color: Colors.white54)),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 2),
@@ -301,11 +305,11 @@ class _MapWidgetState extends State<MapWidget> {
               ],
             ),
 
-            Padding(padding: EdgeInsets.only(left: 26,top: 6),
+            Padding(padding: const EdgeInsets.only(left: 26,top: 6),
               child: Column(children: [
                 Row(
                   children: [
-                    if (duration != null) Icon(Icons.timer_outlined,color: Colors.white54,size: 14,),
+                    if (duration != null) const Icon(Icons.timer_outlined,color: Colors.white54,size: 14,),
                     const SizedBox(
                       width: 8,
                     ),
@@ -329,7 +333,7 @@ class _MapWidgetState extends State<MapWidget> {
                   Row(
 
                     children: [
-                      Icon(Icons.speed_sharp,color: Colors.white54,size: 14,),
+                      const Icon(Icons.speed_sharp,color: Colors.white54,size: 14,),
                       const SizedBox(
                         width: 5,
                       ),
@@ -372,7 +376,7 @@ class _MapWidgetState extends State<MapWidget> {
           ],
         ),
         padding: const EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children:  [
@@ -470,7 +474,7 @@ class _MapWidgetState extends State<MapWidget> {
           draggable: false,
           flat: true,
           zIndex: 2,
-          anchor: Offset(0.5, 0.5),
+          anchor: const Offset(0.5, 0.5),
           icon: BitmapDescriptor.defaultMarker));
     }
     onMapCreatedTapAction = false;
@@ -544,7 +548,7 @@ class _MapWidgetState extends State<MapWidget> {
             infoWindow: InfoWindow(title: element["name"],snippet: "${element["speed"].toStringAsFixed(2)} KM/hr"),
             flat: true,
             zIndex: 2,
-            anchor: Offset(0.5, 0.5),
+            anchor: const Offset(0.5, 0.5),
             rotation: element["direction"],
             onTap: (){},
             icon: navigationIcon));
@@ -567,7 +571,7 @@ class _MapWidgetState extends State<MapWidget> {
     }
     if(currentPolyline == true){
       tempList.add(Polyline(
-        polylineId: PolylineId("currentPolyline"),
+        polylineId: const PolylineId("currentPolyline"),
         points: tempPolylineCoordinates2,
         color:  Colors.blue ,
         patterns: [PatternItem.dash(5)],
@@ -610,10 +614,10 @@ class _MapWidgetState extends State<MapWidget> {
               position: LatLng(
                   currentLocation!.latitude!, currentLocation!.longitude!),
               draggable: false,
-              infoWindow: InfoWindow(title: "currentLocation"),
+              infoWindow: const InfoWindow(title: "currentLocation"),
               flat: true,
               zIndex: 2,
-              anchor: Offset(0.5, 0.5),
+              anchor: const Offset(0.5, 0.5),
               rotation: currentLocation!.heading!,
               icon: navigationIcon));
         }
@@ -722,7 +726,7 @@ class _MapWidgetState extends State<MapWidget> {
     speed = null;
     duration = null;
     String Url =
-        'https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${startLatitude},${startLongitude}&origins=${endLatitude},${endLongitude}&key=$key';
+        'https://maps.googleapis.com/maps/api/distancematrix/json?destinations=$startLatitude,$startLongitude&origins=$endLatitude,$endLongitude&key=$key';
     Dio dio = Dio();
     try {
       Response response = await dio.get(Url);
