@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:are_you_shipping_me/study_materails/map/model_class/distance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
@@ -178,7 +179,7 @@ class _MapWidgetState extends State<MapWidget> {
           if (speed != null && duration != null && distanceBwtwn != null  && destinationName != null) _appBarView(),
           if (speed != null && duration != null && distanceBwtwn != null  && destinationName != null) Align(
               alignment: Alignment.bottomCenter,
-              child: _bottomBar())
+              child: _bottomButton())
         ],
       ),
       floatingActionButton: Padding(
@@ -350,7 +351,7 @@ class _MapWidgetState extends State<MapWidget> {
         )
     );
   }
-  Widget _bottomBar(){
+  Widget _bottomButton(){
     return GestureDetector(
       behavior:HitTestBehavior.translucent,
       onTap: (){
@@ -395,33 +396,66 @@ class _MapWidgetState extends State<MapWidget> {
   }
 
   void addCustomIcon() {
-    BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(12, 12)),
-        "assets/destination.png")
-        .then((value) {
-      destinationIcon = value;
-    });
-    BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(12, 12)), "assets/shipment.png")
-        .then((value) {
-      shipmentIconForStops = value;
-    });
-    BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(12, 12)),
-        "assets/3d_truck2x.png")
-        .then((value) {
-      navigationIcon = value;
-    });
-    BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(30, 30)),
-        "assets/shipment2x.png")
-        .then(
-          (icon) {
-        setState(() {
-          shipmentIcon = icon;
-        });
-      },
-    );
+    if (Platform.isIOS) {
+
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(12, 12)),
+          "assets/destination_ios.png")
+          .then((value) {
+        destinationIcon = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(12, 12),), "assets/shipment_ios.png")
+          .then((value) {
+        shipmentIconForStops = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(12, 12)),
+          "assets/3d_truck.png")
+          .then((value) {
+        navigationIcon = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(30, 30)),
+          "assets/shipment.png")
+          .then(
+            (icon) {
+          setState(() {
+            shipmentIcon = icon;
+          });
+        },
+      );
+
+    }
+    else {
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(12, 12)),
+          "assets/destination.png")
+          .then((value) {
+        destinationIcon = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(12, 12),), "assets/shipment.png")
+          .then((value) {
+        shipmentIconForStops = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(12, 12)),
+          "assets/3d_truck2x.png")
+          .then((value) {
+        navigationIcon = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(30, 30)),
+          "assets/shipment2x.png")
+          .then(
+            (icon) {
+          setState(() {
+            shipmentIcon = icon;
+          });
+        },
+      );
+    }
   }
 
   void getPolyPoints() async {
