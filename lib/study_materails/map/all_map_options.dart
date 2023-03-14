@@ -32,10 +32,10 @@ class _AllMapOptionsState extends State<AllMapOptions> {
     // TODO: implement initState
     _requestPermision();
     _storeFCMToken();
-    location.changeSettings(
-      interval: 300,
-      accuracy: LocationAccuracy.high,
-    );
+    // location.changeSettings(
+    //   interval: 300,
+    //   accuracy: LocationAccuracy.high,
+    // );
     location.enableBackgroundMode(enable: true);
     super.initState();
   }
@@ -107,16 +107,18 @@ class _AllMapOptionsState extends State<AllMapOptions> {
                               subtitle: Row(
                                 children: [
                                   Text(snapshot.data!.docs[index]["latitude"]
-                                      .toString()),
-                                  SizedBox(
+                                      .toString(),overflow: TextOverflow.ellipsis,maxLines: 1,softWrap: true,),
+                                  const SizedBox(
                                     width: 20,
                                   ),
-                                  Text(snapshot.data!.docs[index]["longitude"]
-                                      .toString()),
+                                  Expanded(
+                                    child: Text(snapshot.data!.docs[index]["longitude"]
+                                        .toString(),overflow: TextOverflow.ellipsis,maxLines: 1,softWrap: true,),
+                                  ),
                                 ],
                               ),
                               trailing: IconButton(
-                                  icon: Icon(Icons.directions),
+                                  icon: const Icon(Icons.directions),
                                   onPressed: () {
                                     Navigator.push(
                                       context,
@@ -188,7 +190,7 @@ class _AllMapOptionsState extends State<AllMapOptions> {
   _requestPermision() async {
     var status = await Permission.location.request();
     if (status.isGranted) {
-      print("Done");
+      debugPrint("Done");
     } else if (status.isDenied) {
       _requestPermision();
     } else if (status.isPermanentlyDenied) {

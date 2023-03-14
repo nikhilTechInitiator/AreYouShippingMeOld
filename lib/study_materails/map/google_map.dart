@@ -638,7 +638,7 @@ class _MapWidgetState extends State<MapWidget> {
         polylineId: PolylineId("route${tempList.length}"),
         points: element,
         color: Colors.black87,
-        patterns: const [PatternItem.dot],
+        patterns: Platform.isIOS ?  [PatternItem.dot,PatternItem.gap(5)] :[PatternItem.dot],
         width: 5,
         startCap: Cap.roundCap,
         endCap: Cap.roundCap,
