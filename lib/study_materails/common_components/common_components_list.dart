@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../widgets/pickers/documents/download_open_file.dart';
+import '../social_login/social_login.dart';
 
 class CommonComponents extends StatefulWidget {
   const CommonComponents({Key? key}) : super(key: key);
@@ -132,6 +133,14 @@ class _CommonComponentsState extends State<CommonComponents> {
                 download(url: 'https://drive.google.com/file/d/1JEH9tnKl_1c3oo5DBJ3XwFzRU_WjtlB8/view?usp=share_link',fileNameWithExtension: 'sample ${DateFormat('MMddyyyy hhmmss').format(DateTime.now())}.pdf',isShowSnackBar: true);
               },
               child: const Text('Download From Url')),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>  const SocialLoginScreen()));
+              },
+              child: const Text('Social Login')),
         ],
       ),
     );
