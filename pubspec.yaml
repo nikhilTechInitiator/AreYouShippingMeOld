@@ -54,6 +54,7 @@ dependencies:
   upgrader: ^5.1.0
   firebase_messaging: ^14.2.1
   firebase_core: ^2.4.1
+  firebase_auth: ^4.2.10
   flutter_local_notifications: ^13.0.0
   webview_flutter: ^3.0.4
   persistent_bottom_nav_bar: ^5.0.2
@@ -61,7 +62,7 @@ dependencies:
   google_sign_in: ^5.4.0
   flutter_facebook_auth: ^4.4.1+1
   sign_in_with_apple: ^4.1.0
-  flutter_signin_button: ^2.0.0
+  sign_button: ^2.0.3
   #///staudy material imports///
   provider: ^6.0.5
   syncfusion_flutter_calendar: ^20.4.50
@@ -77,9 +78,7 @@ dependencies:
   flutter_chat_bubble: ^2.0.0
   syncfusion_flutter_sliders: ^20.1.61
   pay: ^1.1.0
-#  js: 0.6.5
   open_filex: ^4.3.2
-
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +90,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+dependency_overrides:
+  intl: ^0.18.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -107,4 +108,5 @@ flutter:
     - assets/
     - assets/json/
     - assets/orderIcons/
+    - assets/icons/
 
