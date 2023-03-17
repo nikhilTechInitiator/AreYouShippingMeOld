@@ -27,7 +27,7 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SignInButton(
-              buttonType: ButtonType.facebook,
+              buttonType: ButtonType.facebook,imagePosition: ImagePosition.left,
               buttonSize: ButtonSize.medium,
               onPressed: () async {
                 // Perform Facebook login
