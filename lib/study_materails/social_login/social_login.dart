@@ -57,6 +57,7 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
               buttonSize: ButtonSize.medium,
               onPressed: () async {
                 // Perform Apple login
+                SocialLoginRepository.signInWithApple(context: context);
               },
             ),
           ],
