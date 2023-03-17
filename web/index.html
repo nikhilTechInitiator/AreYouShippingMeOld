@@ -36,8 +36,35 @@
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
   </script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-storage.js"></script>
   <!-- This script adds the flutter initialization JS code -->
+  <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCOeISUPVtrdSD4R6i0kfzm5SU6NAvqNMg",
+        authDomain: "selector-map-d4b19.firebaseapp.com",
+        projectId: "selector-map-d4b19",
+        storageBucket: "selector-map-d4b19.appspot.com",
+        messagingSenderId: "79723746965",
+        appId: "1:79723746965:web:5d11069fecfdc0b71e2d9c",
+        measurementId: "G-R7CQSKYC5W"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  <!-- END OF FIREBASE INIT CODE -->
   <script src="flutter.js" defer></script>
+  <script src="firebase-app.js"></script>
+  <script src="firebase-auth.js"></script>
+  <script src="firebase-firestore.js"></script>
+  <script src="firebase-storage.js"></script>
+  <script src="firebase-config.js"></script>
+  <meta charset="UTF-8">
+  <meta name="google-signin-client_id" content="79723746965-vne01j3nha557sflpl52ksv28e0b0a20.apps.googleusercontent.com" />
+  <title>Trucking App</title>
 </head>
 <body>
   <script>

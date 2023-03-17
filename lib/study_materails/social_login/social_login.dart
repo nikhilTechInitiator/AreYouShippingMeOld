@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:are_you_shipping_me/study_materails/social_login/social_login_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:sign_button/create_button.dart';
@@ -16,15 +17,15 @@ class SocialLoginScreen extends StatefulWidget {
 class _SocialLoginScreenState extends State<SocialLoginScreen> {
   @override
 
-  void initState() {
-    // TODO: implement initState
-    if(Platform.isIOS){                                                      //check for ios if developing for both android & ios
-      AppleSignIn.onCredentialRevoked.listen((_) {
-        print("Credentials revoked");
-      });
-    }
-    super.initState();
-  }
+  // void initState() {
+  //   // TODO: implement initState
+  //   if(Platform.isIOS){                                                      //check for ios if developing for both android & ios
+  //     AppleSignIn.onCredentialRevoked.listen((_) {
+  //       print("Credentials revoked");
+  //     });
+  //   }
+  //   super.initState();
+  // }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +56,8 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
               buttonSize: ButtonSize.medium,
               onPressed: () async {
                 // Perform Google login
-               SocialLoginRepository.signInWithGoogle(context: context);
+                debugPrint("Perform Google login");
+              kIsWeb ? SocialLoginRepository.signInWithGoogleWeb(context: context)  : SocialLoginRepository.signInWithGoogle(context: context);
               },
             ),
             const SizedBox(height: 20),
@@ -73,3 +75,6 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
     );
   }
 }
+
+
+

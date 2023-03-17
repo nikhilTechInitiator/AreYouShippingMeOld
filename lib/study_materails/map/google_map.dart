@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:are_you_shipping_me/study_materails/map/model_class/distance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
@@ -434,7 +435,39 @@ class _MapWidgetState extends State<MapWidget> {
   }
 
   void addCustomIcon() {
-    if (Platform.isIOS) {
+    if(kIsWeb){
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(12, 12)),
+          "assets/destination.png")
+          .then((value) {
+        destinationIcon = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(
+            size: Size(12, 12),
+          ),
+          "assets/shipment.png")
+          .then((value) {
+        shipmentIconForStops = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(12, 12)),
+          "assets/3d_truck2x.png")
+          .then((value) {
+        navigationIcon = value;
+      });
+      BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(30, 30)),
+          "assets/shipment2x.png")
+          .then(
+            (icon) {
+          setState(() {
+            shipmentIcon = icon;
+          });
+        },
+      );
+    }
+    else if (Platform.isIOS) {
       BitmapDescriptor.fromAssetImage(
               const ImageConfiguration(size: Size(12, 12)),
               "assets/destination_ios.png")
@@ -638,7 +671,7 @@ class _MapWidgetState extends State<MapWidget> {
         polylineId: PolylineId("route${tempList.length}"),
         points: element,
         color: Colors.black87,
-        patterns: Platform.isIOS ?  [PatternItem.dot,PatternItem.gap(5)] :[PatternItem.dot],
+        patterns:  kIsWeb ? [PatternItem.dot] :  Platform.isIOS ?  [PatternItem.dot,PatternItem.gap(5)] :[PatternItem.dot],
         width: 5,
         startCap: Cap.roundCap,
         endCap: Cap.roundCap,
