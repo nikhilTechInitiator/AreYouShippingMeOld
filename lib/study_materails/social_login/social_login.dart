@@ -16,15 +16,7 @@ class SocialLoginScreen extends StatefulWidget {
 class _SocialLoginScreenState extends State<SocialLoginScreen> {
   @override
 
-  void initState() {
-    // TODO: implement initState
-    if(Platform.isIOS){                                                      //check for ios if developing for both android & ios
-      AppleSignIn.onCredentialRevoked.listen((_) {
-        print("Credentials revoked");
-      });
-    }
-    super.initState();
-  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
