@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:are_you_shipping_me/study_materails/social_login/social_login_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:sign_button/create_button.dart';
@@ -15,7 +16,6 @@ class SocialLoginScreen extends StatefulWidget {
 
 class _SocialLoginScreenState extends State<SocialLoginScreen> {
   @override
-
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +47,8 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
               buttonSize: ButtonSize.medium,
               onPressed: () async {
                 // Perform Google login
-               SocialLoginRepository.signInWithGoogle(context: context);
+                debugPrint("Perform Google login");
+              kIsWeb ? SocialLoginRepository.signInWithGoogleWeb(context: context)  : SocialLoginRepository.signInWithGoogle(context: context);
               },
             ),
             const SizedBox(height: 20),
@@ -66,3 +67,6 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
     );
   }
 }
+
+
+

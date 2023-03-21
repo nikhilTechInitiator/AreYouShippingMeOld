@@ -59,7 +59,7 @@ dependencies:
   webview_flutter: ^3.0.4
   persistent_bottom_nav_bar: ^5.0.2
   better_player: ^0.0.83
-  google_sign_in: ^5.4.0
+  google_sign_in: ^6.0.2
   flutter_facebook_auth: ^4.4.1+1
   sign_in_with_apple: ^4.1.0
   sign_button: ^2.0.3
@@ -79,6 +79,7 @@ dependencies:
   syncfusion_flutter_sliders: ^20.1.61
   pay: ^1.1.0
   open_filex: ^4.3.2
+  google_sign_in_web: ^0.11.0+2
 
 dev_dependencies:
   flutter_test:

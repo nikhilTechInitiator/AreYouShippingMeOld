@@ -3,6 +3,7 @@ import 'package:are_you_shipping_me/constants/app_colors.dart';
 import 'package:are_you_shipping_me/constants/app_styles.dart';
 import 'package:are_you_shipping_me/study_materails/other_widgets/profile_avatar_widget.dart';
 import 'package:are_you_shipping_me/widgets/pickers/media/image_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ProfileComponents extends StatefulWidget {
@@ -25,7 +26,7 @@ class _ProfileComponentsState extends State<ProfileComponents> {
           constraints: const BoxConstraints(),
           padding: const EdgeInsets.only(left: 14, right: 10),
           icon: Icon(
-              Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
+              kIsWeb ? Icons.arrow_back :  Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pop(context);
           },

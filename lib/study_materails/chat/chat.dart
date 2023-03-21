@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:are_you_shipping_me/widgets/text_fields/text_field_outlined.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 
@@ -22,7 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
           constraints: const BoxConstraints(),
           padding: const EdgeInsets.only(left: 14, right: 10),
           icon: Icon(
-              Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
+              kIsWeb ? Icons.arrow_back :  Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pop(context);
           },
