@@ -11,11 +11,9 @@ Future<File?> pickImageFromGallery(
     bool isSquareCrop = false,
     bool isLockAspectRatio = true}) async {
   File? imageFile;
-
-  await Permission.storage.request();
-  await Permission.camera.request();
-  if (await Permission.storage.request().isGranted &&
-      await Permission.camera.request().isGranted) {
+  final photoPermissionStatus = await Permission.photos.request();
+  final cameraPermissionStatus = await Permission.camera.request();
+  if (photoPermissionStatus.isGranted && cameraPermissionStatus.isGranted) {
     final XFile? pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
@@ -25,12 +23,10 @@ Future<File?> pickImageFromGallery(
           isCircleShape: isCircleShape,
           isSquareCrop: isSquareCrop,
           isLockAspectRatio: isLockAspectRatio);
-
     }
   } else {
     permissionCompulsoryRequestAlert(
-        requestMessage:
-            'App needs access to your media and camera');
+        requestMessage: 'App needs access to your media and camera');
   }
   return imageFile;
 }
