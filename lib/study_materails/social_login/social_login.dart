@@ -17,15 +17,6 @@ class SocialLoginScreen extends StatefulWidget {
 class _SocialLoginScreenState extends State<SocialLoginScreen> {
   @override
 
-  // void initState() {
-  //   // TODO: implement initState
-  //   if(Platform.isIOS){                                                      //check for ios if developing for both android & ios
-  //     AppleSignIn.onCredentialRevoked.listen((_) {
-  //       print("Credentials revoked");
-  //     });
-  //   }
-  //   super.initState();
-  // }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +27,7 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SignInButton(
-              buttonType: ButtonType.facebook,
+              buttonType: ButtonType.facebook,imagePosition: ImagePosition.left,
               buttonSize: ButtonSize.medium,
               onPressed: () async {
                 // Perform Facebook login
@@ -67,6 +58,7 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
               buttonSize: ButtonSize.medium,
               onPressed: () async {
                 // Perform Apple login
+                SocialLoginRepository.signInWithApple(context: context);
               },
             ),
           ],

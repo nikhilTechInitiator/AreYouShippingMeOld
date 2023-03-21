@@ -106,7 +106,7 @@ class SocialLoginRepository {
       }
     }
     if(user == null){
-      showSnackBar(" ${AppStrings.somethingWentWrong}");
+      showSnackBar(" ${AppStrings.somethingWentWrong} user null");
     }
     return user;
   }
@@ -129,13 +129,13 @@ class SocialLoginRepository {
       user = userCredential.user;
     }on SocketException {
       debugPrint("Socket Exception ");
-      showSnackBar(" ${AppStrings.somethingWentWrong}");
+      showSnackBar(" ${AppStrings.noInternetMessage}");
     } catch (onError) {
       debugPrint("Catch ${onError.toString()} ");
-      showSnackBar(" ${AppStrings.somethingWentWrong}");
+      showSnackBar(" ${AppStrings.somethingWentWrong}${onError.toString()}");
     }
     if(user == null){
-      showSnackBar(" ${AppStrings.somethingWentWrong}");
+      showSnackBar(" ${AppStrings.somethingWentWrong} user null");
     }
     return user;
   }
