@@ -21,11 +21,11 @@ class SocialLoginRepository {
       ///web client id from firebase///
       clientId: '79723746965-vne01j3nha557sflpl52ksv28e0b0a20.apps.googleusercontent.com',
     );
-    // await googleSignIn.signOut();
+    await googleSignIn.signOut();
     // await googleSignIn.signInSilently();
     debugPrint("Perform Google login 111111");
     final GoogleSignInAccount? googleSignInAccount =
-    await googleSignIn.signInSilently();
+    await googleSignIn.signIn();
     showSnackBar("Perform Google signIn()");
     debugPrint("Perform Google login333333333");
     if (googleSignInAccount != null) {
